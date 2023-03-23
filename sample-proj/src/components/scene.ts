@@ -4,9 +4,9 @@ function createScene(filePath: string): Scene {
   
   const scene = new Scene();
 
-  const texture = new TextureLoader().load(filePath);
+  // const texture = new TextureLoader().load(filePath);
 
-  scene.background = texture;
+  //scene.background = texture;
 
   return scene;
 }

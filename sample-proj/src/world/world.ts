@@ -4,6 +4,7 @@ import { createCamera } from '../components/camera'
 import { createScene } from '../components/scene';
 import { ambientLightning } from '../systems/lighting';
 import { createRenderer } from '../systems/renderer';
+import { Resizer } from '../systems/Resizer';
 // import { Resizer } from '../systems/Resizer.js';
 
 // These variables are module-scoped: we cannot access them
@@ -17,11 +18,12 @@ class World {
   scene: Scene;
   renderer: WebGLRenderer;
   constructor(scenePath: string, newCanvas: HTMLCanvasElement | undefined) {
-    // this.container = document.querySelector('#scene-container') as HTMLCanvasElement; 
+    this.container = document.querySelector('#scene-container') as HTMLCanvasElement; 
     this.camera = createCamera();
     this.scene = createScene(scenePath);
     this.renderer = createRenderer(newCanvas);
     ambientLightning(this.scene);
+    console.log(this.renderer.domElement);
     // this.container?.append(this.renderer.domElement);
   }
   

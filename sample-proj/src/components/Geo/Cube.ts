@@ -43,12 +43,12 @@ export default class Cube {
    moveSideways = () => {
     // let scene = this.world.getScene();
     requestAnimationFrame(this.moveSideways)
-    if (this.cube.position.x > -10 && this.reachedLeft === false) {
+    if (this.cube.position.x > -5 && this.reachedLeft === false) {
       this.cube.position.x -= 0.01;
-    } else if (this.cube.position.x <= -10 && this.reachedLeft === false) {
+    } else if (this.cube.position.x <= -5 && this.reachedLeft === false) {
       this.cube.position.x += 0.01;
       this.reachedLeft = true;
-    } else if (this.cube.position.x <= 10 && this.reachedLeft) {
+    } else if (this.cube.position.x <= 5 && this.reachedLeft) {
       this.cube.position.x += 0.01;
     } else {
       this.reachedLeft = false;

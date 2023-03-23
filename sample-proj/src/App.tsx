@@ -4,6 +4,9 @@ import { World } from './world/world';
 import Circle from './components/Geo/Circle';
 import { BoxGeometry, CircleGeometry, PerspectiveCamera, Scene, WebGLRenderer } from 'three';
 import Cube from './components/Geo/Cube';
+import pyramid from './components/Geo/Pyramid';
+import Sphere from './components/Geo/Sphere';
+import Space, { createSpace } from './components/backgrounds/space';
 
 
 function App() {
@@ -49,21 +52,28 @@ function App() {
     scene.add(cube);
     render();
     */
-   const newCanvas = document.getElementById('scene-container') as HTMLCanvasElement;
+    const newCanvas = document.getElementById('scene-container') as HTMLCanvasElement;
+ 
+    world = new World('./src/textures/field-corn-air.jpeg', newCanvas);
+    scene = world.getScene();
+    camera = world.getCamera();
+    renderer = world.getRenderer();
+  
+    let space = new Space(scene);
+    space.animate();
 
-   world = new World('./src/textures/field-corn-air.jpeg', newCanvas);
-   scene = world.getScene();
-   camera = world.getCamera();
-   renderer = world.getRenderer();
+    // let newCube = new Cube(1, 64, world, './src/textures/ornatebrass1-bl/ornate-brass_albedo.png');
+    // let newCube = new Cube(1, 64, world, './src/textures/Metal_Mesh_003_basecolor.jpg');
+    let newCircle = new Circle(1, 64, world, './src/textures/field-corn-air.jpeg');
+    let newSphere = new Sphere(.7, world, './src/textures/Metal_Mesh_003_basecolor.jpg')
+    // newCube.moveSideways();
+    newSphere.rotate();
+    // newSphere.moveSideways();
 
-
-   // let newCube = new Cube(1, 64, world, './src/textures/ornatebrass1-bl/ornate-brass_albedo.png');
-   let newCube = new Cube(1, 64, world, './src/textures/Metal_Mesh_003_basecolor.jpg');
-   let newCircle = new Circle(1, 64, world, './src/textures/field-corn-air.jpeg');
-   newCube.moveSideways();
-   // newCircle.moveSideways();
-   
-   world.renderAll();
+    // new Resizer(this.container, this.camera, this.renderer);
+    // newCircle.moveSideways();
+    
+    world.renderAll();
   }, []) 
   return (
     <main>
